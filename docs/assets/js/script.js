@@ -6,31 +6,30 @@ var machineWins = 0;
 var draws = 0;
 
 for (i = 0; i < attempts; i++) {
-    var humanPlay = cards[parseInt(prompt("Ingresa tu eleccion numerica segun tu eleccion:\n 1-piedra \n 2-papel \n 3-tijera"))-1];
+    var humanPlay = parseInt(prompt("Ingresa tu eleccion numerica segun tu eleccion:\n 1-piedra \n 2-papel \n 3-tijera"))-1;
+                    //to string this number should be cards index number to select the string card
+    var machinePlay = Math.floor(Math.random() * cards.length);
+                    // to string logic cards[Math.floor(Math.random() * cards.length)];
     
-    var machinePlay = cards[Math.floor(Math.random() * cards.length)];
-
-    
-
+    //with string logic instead number, should be string card`s name (humanPlay == 'piedra' && machinePlay == 'tijera') 
     console.log(humanPlay);
-    console.log(machinePlay);
 
-        if (humanPlay == "piedra" && machinePlay == "tijera" || humanPlay == "papel" && machinePlay == "piedra" || humanPlay == "tijera" && machinePlay == "papel") {
-            alert(`Lanzaste ${humanPlay} y la maquina ${machinePlay}, haz ganado el duelo numero ${i+1}!!`);
+        if (humanPlay == 0 && machinePlay == 2 || humanPlay == 1 && machinePlay == 0 || humanPlay == 2 && machinePlay == 1) {
+            alert(`Lanzaste ${cards[humanPlay]} y la maquina ${cards[machinePlay]}, haz ganado el duelo numero ${i+1}!!`);
             
             humanWins++;
 
-        } else if (humanPlay == "tijera" && machinePlay == "piedra" || humanPlay == "piedra" && machinePlay == "papel" || humanPlay == "papel" && machinePlay == "tijera") {
-            alert(`Lanzaste ${humanPlay} y la maquina ${machinePlay}, haz perdido el duelo numero ${i+1}!!`);
+        } else if (humanPlay == 2 && machinePlay == 0 || humanPlay == 0 && machinePlay == 1 || humanPlay == 1 && machinePlay == 2) {
+            alert(`Lanzaste ${cards[humanPlay]} y la maquina ${cards[machinePlay]}, haz perdido el duelo numero ${i+1}!!`);
             
             machineWins++;
 
         } else if (humanPlay == machinePlay) {
-            alert(`Lanzaste ${humanPlay} y la maquina ${machinePlay}, haz empatado con la maquina en el duelo numero ${i+1}!!`);
+            alert(`Lanzaste ${cards[humanPlay]} y la maquina ${cards[machinePlay]}, haz empatado con la maquina en el duelo numero ${i+1}!!`);
             draws++;
 
         } else {
-            alert("Debes ingresar una de las tes opciones correctamente escrita y sin mayusculas!! duelo anulado!!!");
+            alert("Debes ingresar el numero correcto!!");
         }
   
 }
